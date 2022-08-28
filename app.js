@@ -18,10 +18,6 @@ animation(true)
 
 
 
-
-
-
-
 // function to show/remove the loader
 
 const loading = (state) => {
@@ -29,7 +25,6 @@ const loading = (state) => {
 }
 
 loading(false)
-
 
 
 const getRecipe = async (query) => {
@@ -43,7 +38,7 @@ const getRecipe = async (query) => {
         const response = await fetch(endpoint)
         const { hits } = await response.json()
 
-        if(hits.length===0) window.alert("No recipe found, SearchBox is Empty 👨‍🍳" ) ;{ animation(true)}
+        if (hits.length === 0) window.alert("No recipe found, SearchBox is Empty 👨‍🍳"); { animation(true) }
         // console.log(hits)
 
         // hits.map(hits => {
@@ -53,9 +48,9 @@ const getRecipe = async (query) => {
 
         hits.map(({ recipe }) => {
             console.log(recipe)
-           
 
-            const { image, calories, label, url, yield , ingredientLines } = recipe
+
+            const { image, calories, label, url, yield, ingredientLines } = recipe
             const ele = document.createElement('li')
             ele.classList.add('cards_item')
 
@@ -64,7 +59,7 @@ const getRecipe = async (query) => {
         <div class="card">
             <div class="card_image"><img src=${image} alt="mixed vegetable salad in a mason jar. " /></div>
             <div class="card_content">
-                <h4 class="card_title">${label} <span class="orange">${calories.toFixed(0)} kCal</span></h4>
+                <h4 class="card_title">${label} <span class="orange">${calories.toFixed(0)} kcal</span></h4>
                 <br>
 
                 <h4>Serving : </h4>${yield} people
@@ -80,11 +75,7 @@ const getRecipe = async (query) => {
 
             recipeList.appendChild(ele)
 
-
-
         })
-
-
 
         loading(false)
 
@@ -97,23 +88,20 @@ const getRecipe = async (query) => {
 };
 
 
-
-
 const searchRecipie = () => {
 
-      // remove the previous results
-  recipeList.innerHTML=null
+    // remove the previous results
+    recipeList.innerHTML = null
 
     const query = input.value
     getRecipe(query);
-
 
 
 };
 
 button.addEventListener('click', searchRecipie)
 
-input.addEventListener('keydown',e=>e.key==='Enter'?searchRecipie():null)
+input.addEventListener('keydown', e => e.key === 'Enter' ? searchRecipie() : null)
 
 
 
