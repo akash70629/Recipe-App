@@ -13,7 +13,6 @@ const gif = document.querySelector('#scroller')
 const animation = (astate) => {
     gif.style = `display: ${astate == true ? 'block' : "none"}`
 }
-
 animation(true)
 
 
@@ -23,7 +22,6 @@ animation(true)
 const loading = (state) => {
     loader.style = `display: ${state == true ? 'block' : "none"}`
 }
-
 loading(false)
 
 
@@ -39,12 +37,7 @@ const getRecipe = async (query) => {
         const { hits } = await response.json()
 
         if (hits.length === 0) window.alert("No recipe found, SearchBox is Empty 👨‍🍳"); { animation(true) }
-        // console.log(hits)
-
-        // hits.map(hits => {
-        //     console.log(hits.recipe)
-        // })
-
+        
 
         hits.map(({ recipe }) => {
             console.log(recipe)
@@ -102,13 +95,3 @@ const searchRecipie = () => {
 button.addEventListener('click', searchRecipie)
 
 input.addEventListener('keydown', e => e.key === 'Enter' ? searchRecipie() : null)
-
-
-
-
-
-
-
-
-
-
