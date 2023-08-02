@@ -5,6 +5,7 @@ const input = document.querySelector("#type")
 const loader = document.querySelector("div.loader")
 const recipeList = document.querySelector('.cards')
 const gif = document.querySelector('#scroller')
+const footer = document.querySelector('.footer')
 
 
 
@@ -25,18 +26,33 @@ const loading = (state) => {
 loading(false)
 
 
+// Api call
+
 const getRecipe = async (query) => {
 
     try {
 
         loading(true)
         animation(false)
+        footer.style = `display : none`
+
+
         const endpoint = `https://api.edamam.com/api/recipes/v2?type=public&q=${query}&app_id=${app_id}&app_key=${app_key}`;
 
         const response = await fetch(endpoint)
         const { hits } = await response.json()
 
-        if (hits.length === 0) window.alert("No recipe found, SearchBox is Empty 👨‍🍳"); { animation(true) }
+        if (hits.length === 0)
+        
+        {swal("No recipe found, SearchBox is Empty 👨‍🍳!", {
+            buttons: false,
+            timer: 3000,
+          });}; 
+          
+          { animation(true) } ;
+    
+          {footer.style = `display : block`}
+        
         
 
         hits.map(({ recipe }) => {
@@ -52,17 +68,17 @@ const getRecipe = async (query) => {
         <div class="card">
             <div class="card_image"><img src=${image} alt="mixed vegetable salad in a mason jar. " /></div>
             <div class="card_content">
-                <h4 class="card_title">${label} <span class="orange">${calories.toFixed(0)} kcal</span></h4>
+                <h4 class="card_title">${label} <span class="orange">${calories.toFixed(0)}    kcal</span></h4>
                 <br>
 
-                <h4>Serving : </h4>${yield} people
+                <span class="blue">Serving : </span>${yield} people
 
 <br><br>
                 <h3>Ingredients : </h3> 
                 <li> ${ingredientLines}</li>
 
                 <button class="card_btn orange"><a target="_blank" href=${url} >See more </a></button>
-            </div>
+                </div>
         </div>
     `
 
