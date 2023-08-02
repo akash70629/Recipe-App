@@ -1215,6 +1215,7 @@ img {
   border-radius: 10px;
   height: 530px;
   width: 320px;
+  margin-top: 43px;
 }
 
 
@@ -1524,6 +1525,16 @@ button {
 
 }
 
+@media only screen and (max-width: 940px) {
+
+  #scroller img{
+
+    margin-top: 90px;
+  }
+}
+
+
+
 @media only screen and (max-width: 864px) {
   #type {
     width: 290px;
@@ -1539,7 +1550,7 @@ button {
   }
 
   .footer {
-    height: 190px;
+    height: 112px;
     margin-top: 0%;
   }
 
@@ -1676,6 +1687,12 @@ button {
     top: 80px;
     margin-left: 30px;
   }
+
+    #scroller img{
+  
+      margin-top: 170px;
+    }
+
 
 
 }
